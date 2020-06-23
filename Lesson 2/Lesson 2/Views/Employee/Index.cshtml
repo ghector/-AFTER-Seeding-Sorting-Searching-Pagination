@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Lesson_2.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h2>Employees</h2>
+<br />
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Card</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>Projects</th>
+            <th>Department</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.Name</td>
+                <td>@emp.Card.Title</td>
+                <td>@emp.Age</td>
+                <td>@emp.Salary</td>
+                <td>
+                    <ul class="list-unstyled">
+                        @foreach (var proj in emp.Projects)
+                        {
+                            <li>@string.Format("{0,-4} - {1,-4}", proj.Id, proj.Title)</li>
+                         
+                        }
+
+
+                    </ul>
+                </td>
+                <td>@emp.Department.Name</td>
+            </tr>
+        }
+
+
+
+    </tbody>
+
+
+</table>
+
+
+
+
+
+
+

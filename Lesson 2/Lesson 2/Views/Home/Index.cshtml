@@ -1,31 +1,113 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model Lesson_2.ViewModels.AllEntitiesViewModel
+
+@{
+    ViewBag.Title = "Index";
 }
+<br />
+<hr />
+<H2 class="pb-3">Employees</H2>
+<table class="table table-hover table-bordered" style="width:380px">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    <thead>
+        <tr>
+            <th class="text-center" width="10px">Id</th>
+            <th width="200px">Name</th>
+            <th class="text-center" width="20px">Age</th>
+            <th width="150px">Salary</th>
+        </tr>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    </thead>
+    <tbody>
+
+        @foreach (var emp in Model.Employees)
+        {
+            <tr>
+                <td class="text-center">@emp.Id</td>
+                <td>@emp.Name</td>
+                <td class="text-center">@emp.Age</td>
+                <td>@string.Format("{0:C0}",emp.Salary)</td>
+            </tr>
+        }
+
+
+    </tbody>
+
+</table>
+
+<hr />
+<H2 class="pb-3">Departments</H2>
+<table class="table table-hover table-bordered" style="width:380px">
+
+    <thead>
+        <tr>
+            <th class="text-center" width="10px">Id</th>
+            <th width="200px">Name</th>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var dep in Model.Departments)
+        {
+            <tr>
+                <td>@dep.Id</td>
+                <td>@dep.Name</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<hr />
+<H2 class="pb-3">Projects</H2>
+<table class="table table-hover table-bordered" style="width:380px">
+
+    <thead>
+        <tr>
+            <th class="text-center" width="10px">Id</th>
+            <th width="200px">Title</th>
+            <th>Start Date</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var pro in Model.Projects)
+        {
+            <tr>
+                <td>@pro.Id</td>
+                <td>@pro.Title</td>
+                <td>@string.Format("{0:d/M/yyyy}", pro.StartDate)</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<hr />
+<H2 class="pb-3">Cards</H2>
+<table class="table table-hover table-bordered" style="width:380px">
+
+    <thead>
+        <tr>
+            <th class="text-center" width="10px">Id</th>
+            <th width="200px">Title</th>
+          
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var card in Model.Cards)
+        {
+            <tr>
+                <td>@card.Id</td>
+                <td>@card.Title</td>
+
+
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>
