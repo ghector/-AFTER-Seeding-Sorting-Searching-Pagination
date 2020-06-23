@@ -11,6 +11,7 @@ namespace Lesson_2.ViewModels
         public int DepartmentsCount { get; set; }
         public int ProjectsCount { get; set; }
 
+        public IQueryable<IGrouping<string,string>> EmployeesPerProject { get; set; }
 
     }
 }

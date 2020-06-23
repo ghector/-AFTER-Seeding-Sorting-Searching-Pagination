@@ -1,0 +1,37 @@
+﻿@model Lesson_2.ViewModels.StatsViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+    <hr />
+<strong>Employees   : </strong>@Model.EmployeesCount
+<hr />
+<strong>Departments : </strong>@Model.DepartmentsCount
+<hr />
+<strong>Projects    : </strong>@Model.ProjectsCount
+<hr />
+<strong>Employees Per Project   : </strong>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>Employees</th>
+        </tr>
+       
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmployeesPerProject)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td>@item.Count()</td>
+            </tr>
+          
+
+
+        }
+    </tbody>
+   
+</table>
