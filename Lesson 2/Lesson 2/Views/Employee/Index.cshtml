@@ -8,6 +8,22 @@
 <h2>Employees</h2>
 <br />
 
+<form action="/Employee/index" method="get">
+
+    <label for="searchName">Find By Name:</label>
+    <input id="searchName" type="text" name="searchName" value="" />
+    <input type="submit" value="Search" />
+
+</form>
+
+<hr />
+
+
+
+
+
+
+
 
 <table class="table table-hover">
     <thead>
@@ -37,7 +53,7 @@
                         @foreach (var proj in emp.Projects)
                         {
                             <li>@string.Format("{0,-4} - {1,-4}", proj.Id, proj.Title)</li>
-                         
+
                         }
 
 
@@ -46,8 +62,6 @@
                 <td>@emp.Department.Name</td>
             </tr>
         }
-
-
 
     </tbody>
 

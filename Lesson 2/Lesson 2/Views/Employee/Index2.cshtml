@@ -1,0 +1,29 @@
+﻿@model Lesson_2.Models.Employee
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<hr />
+
+
+@* @html.DisplayFor *@
+
+
+
+
+@using (Html.BeginForm("Index2", "Employee", FormMethod.Get))
+{
+    @Html.TextBoxFor(x => x.Name);
+
+
+    <input type="number" name="Salary" value="@Model.Salary" id="Ektoras" class="btn btn-danger" />
+    @Html.TextBoxFor(x => x.Salary, new { type = "number", id = "EKTORAS", @class = "btn btn-danger" });
+
+
+
+
+
+    <input type="submit" value="Search" />
+}
+

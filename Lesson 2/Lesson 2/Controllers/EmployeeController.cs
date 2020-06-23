@@ -18,5 +18,14 @@ namespace Lesson_2.Controllers
 
             return View(employees);
         }
+
+        public ActionResult Index2()
+        {
+            var employee = db.Employees.Find(2);
+
+
+            return View(employee);
+        }
+
     }
 }

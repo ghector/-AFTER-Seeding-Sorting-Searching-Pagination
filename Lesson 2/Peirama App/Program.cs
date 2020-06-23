@@ -98,7 +98,7 @@ namespace Peirama_App
                 Name = "Hector2020",
                 Salary = 500002020,
                 Age = 33,
-                Department = D1,
+                DepartmentId = 1,
                 Projects = new List<Project>() { p1, p2, p3, p4 },
                 Card = new Card() { Title = "AF 124" }
             };
