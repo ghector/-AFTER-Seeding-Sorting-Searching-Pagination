@@ -1,4 +1,10 @@
-﻿@model IEnumerable<Lesson_2.Models.Employee>
+﻿@model PagedList.IPagedList<Lesson_2.Models.Employee>
+@using PagedList.Mvc
+
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+
+
+
 
 @{
     ViewBag.Title = "Index";
@@ -12,9 +18,31 @@
 
     <label for="searchName">Find By Name:</label>
     <input id="searchName" type="text" name="searchName" value="" />
+
+
+    <input id="searchSalaryMin" type="number" name="searchSalaryMin" value="" placeholder="Min Salary" />
+
+
+    <input id="searchSalaryMax" type="number" name="searchSalaryMax" value="" placeholder="Max Salary" />
+
+
+
     <input type="submit" value="Search" />
+    <input type="reset" value="Clear" />
 
 </form>
+
+<hr />
+
+        
+
+
+Page @( Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber ) of @Model.PageCount
+
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+  
+    
 
 <hr />
 
@@ -22,6 +50,7 @@
 
 
 
+<hr />
 
 
 
