@@ -57,7 +57,7 @@ namespace Lesson_2.Controllers
             return View(employee);
         }
 
-        public ActionResult IndexAdmin(string sortOrder,string searchname,string searchcard,string searchdepartment,int? searchAgeMin,int? searchAgeMax,string searchproject)
+        public ActionResult IndexAdmin(string sortOrder,string searchname,string searchcard,string searchdepartment,int? searchAgeMin,int? searchAgeMax,string searchproject, int? page,int? size)
         {
             var employees = db.Employees.ToList();
 
@@ -78,6 +78,7 @@ namespace Lesson_2.Controllers
             ViewBag.searchAgeMax = searchAgeMax;
             ViewBag.searchproject = searchproject;
             ViewBag.maxAge = maxAge;
+            ViewBag.size = size;
 
 
             ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -144,13 +145,12 @@ namespace Lesson_2.Controllers
 
             }
 
-        
 
 
 
-
-
-            return View(employees);
+            int pageSize = size ?? 3;
+            int pageNumber = page ?? 1;
+            return View(employees.ToPagedList(pageNumber, pageSize));
         }
 
 

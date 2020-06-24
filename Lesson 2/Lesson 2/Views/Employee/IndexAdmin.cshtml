@@ -1,6 +1,7 @@
-﻿@model IEnumerable<Lesson_2.Models.Employee>
+﻿@model PagedList.IPagedList<Lesson_2.Models.Employee>
+@using PagedList.Mvc
 
-
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 
 
@@ -27,7 +28,7 @@
     <label for="searchAgeMin">Min Age :</label>
     @Html.TextBox("searchAgeMin", 0, new { type = "number", style = "width:70px" })
 
-    @{ 
+    @{
         byte maxage = (byte)ViewBag.maxAge;
     }
 
@@ -36,7 +37,18 @@
 
     <label for="searchproject">Find Project :</label>
     @Html.TextBox("searchproject")
+
+
+    <select name="size">
+        <option value="2">2</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+    </select>
+
     <hr />
+
+
+
     <input type="submit" value="Search" />
     <input type="reset" value="Clear" />
 
@@ -50,10 +62,16 @@
 
 
 
+Page @( Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber ) of @Model.PageCount
+
+
+@Html.PagedListPager(Model, page => Url.Action("IndexAdmin", new { page, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject }))
+
+
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>@Html.ActionLink("Id", "IndexAdmin", new { sortorder = ViewBag.IdSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th> 
+            <th>@Html.ActionLink("Id", "IndexAdmin", new { sortorder = ViewBag.IdSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
             <th>@Html.ActionLink("Name", "IndexAdmin", new { sortorder = ViewBag.NameSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
             <th>@Html.ActionLink("Card", "IndexAdmin", new { sortorder = ViewBag.CardSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
             <th>@Html.ActionLink("Age", "IndexAdmin", new { sortorder = ViewBag.AgeSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
