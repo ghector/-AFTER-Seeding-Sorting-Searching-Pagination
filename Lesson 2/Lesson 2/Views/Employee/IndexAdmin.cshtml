@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Lesson_2.Models.Employee>
+
+
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h2>Employees</h2>
+<br />
+
+<form action="/Employee/indexadmin" method="get">
+
+    <label for="searchName">Find by Name :</label>
+    @Html.TextBox("searchname")
+
+    <label for="searchcard">Find by Card :</label>
+    @Html.TextBox("searchcard")
+
+    <label for="searchdepartment">Find by Department :</label>
+    @Html.TextBox("searchdepartment")
+
+    <hr />
+    <label for="searchAgeMin">Min Age :</label>
+    @Html.TextBox("searchAgeMin", 0, new { type = "number", style = "width:70px" })
+
+    @{ 
+        byte maxage = (byte)ViewBag.maxAge;
+    }
+
+    <label for="searchAgeMax">Max Age :</label>
+    @Html.TextBox("searchAgeMax", maxage, new { type = "number", style = "width:70px" })
+
+    <label for="searchproject">Find Project :</label>
+    @Html.TextBox("searchproject")
+    <hr />
+    <input type="submit" value="Search" />
+    <input type="reset" value="Clear" />
+
+</form>
+
+
+
+
+
+<hr />
+
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>@Html.ActionLink("Id", "IndexAdmin", new { sortorder = ViewBag.IdSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th> 
+            <th>@Html.ActionLink("Name", "IndexAdmin", new { sortorder = ViewBag.NameSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
+            <th>@Html.ActionLink("Card", "IndexAdmin", new { sortorder = ViewBag.CardSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
+            <th>@Html.ActionLink("Age", "IndexAdmin", new { sortorder = ViewBag.AgeSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
+            <th>@Html.ActionLink("Salary", "IndexAdmin", new { sortorder = ViewBag.SalarySortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
+            <th>@Html.ActionLink("Projects", "IndexAdmin", new { sortorder = ViewBag.ProjectSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
+            <th>@Html.ActionLink("Department", "IndexAdmin", new { sortorder = ViewBag.DepartmentSortParam, searchname = ViewBag.searchname, searchcard = ViewBag.searchcard, searchdepartment = ViewBag.searchdepartment, searchAgeMin = ViewBag.searchAgeMin, searchAgeMax = ViewBag.searchAgeMax, searchproject = ViewBag.searchproject })</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.Name</td>
+                <td>@emp.Card.Title</td>
+                <td>@emp.Age</td>
+                <td>@emp.Salary</td>
+                <td>
+                    <ul class="list-unstyled">
+                        @foreach (var proj in emp.Projects)
+                        {
+                            <li>@string.Format("{0,-4} - {1,-4}", proj.Id, proj.Title)</li>
+
+                        }
+
+
+                    </ul>
+                </td>
+                <td>@emp.Department.Name</td>
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>
+
+
+
+
+
+
+
